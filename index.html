@@ -22,35 +22,29 @@
                 Search
             </button>
             </form>
-            <h1 id="city">
-                Krakow, Poland
-            </h1>
+            <h1 id="city"></h1>
             <ul>
                 <li>
-                    Monday 15:15
+                    Last update: <span id="date"></span>
                 </li>
-                <li id="description">
-                    Partly Cloudy
-                </li>
+                <li id="description"> </li>
             </ul>
             </div>
         <div class="row">
             <div class="col-md-6">
                 <div class="d-flex weather-temperature">
-                <div class="clearfix weather-temperature">
-                <img src="https://openweathermap.org/img/wn/02d@2x.png" id="icon" alt=sunny width=70px> 
-                <strong  id="temperature">
-                    18
-                </strong>
-                <span class="units">
-                    <a href="#" id="celsius-link" class="active">
+                    <div class="clearfix weather-temperature">
+                        <img src="https://openweathermap.org/img/wn/02d@2x.png" id="icon" alt=sunny width=70px> 
+                        <strong  id="temperature"></strong>
+                        <span class="units">
+                        <a href="#" id="celsius-link" class="active">
                         °C
-                    </a> | 
-                    <a href="#" id="fahrenheit-link">
+                        </a> | 
+                        <a href="#" id="fahrenheit-link">
                         °F
-                    </a>
-                </span>
-                </div>
+                        </a>
+                        </span>
+                    </div>
                 </div>
             </div>
             <div class="col-md-6">
@@ -60,18 +54,19 @@
                 </li> -->
                 <li>
                     Humidity: 
-                    <span id="humidity">
-                        %
-                    </span>
+                    <span id="humidity"></span>
+                    %
                 </li>
                 <li >
                     Wind:
-                    <span id="wind">
-                        km/h
-                    </span>
+                    <span id="wind"></span>
+                    km/h
                 </li>
             </ul>
             </div>
+        </div>
+        <div class="weather-forecast" id="forecast">
+           
         </div>
         </div>
     <small>

@@ -77,13 +77,56 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 
-// function getForecast(coordinates) {
-//   console.log(coordinates);
-//   //let apiKey = "2ftf8d18ca43a10o8bf09c1a6bc39253";
-//   //let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
-//   //console.log(apiUrl);
-//   //axios.get(apiUrl);
-// }
+function displayForecast(response) {
+  let forecast = response.data.daily;
+  let forecastElement = document.querySelector("#forecast");
+  let forecastHtml= `<div class="row">`;
+  // let days=["Thu","Fry","Sat"];
+  forecast.forEach(function(forecastDay){
+    forecastHtml=forecastHtml +
+    `<div class="col-2">
+    <div class="weather-forecast-date">
+        ${formatDate(forecastDay.dt)}
+     </div>
+    <div>
+        <img src="https://openweathermap.org/img/wn/${forecast.weather[0].icon}@2x.png" alt="" width="42"/>
+    </div>
+    <div class="weather-forecast-temperature">
+        <span class="forecast-temperature-max">${forecastDay.temp.max} °</span>
+        <span class="forecast-temperature-min">${forecastDay.temp.min}°</span>
+    </div>
+    </div>`
+    ;
+  
+  })
+
+  // forecastHtml=forecastHtml +
+  // `<div class="col-2">
+  // <div class="weather-forecast-date">
+  //     Thu
+  //  </div>
+  // <div>
+  //     <img src="https://openweathermap.org/img/wn/02d@2x.png" alt="" width="42"/>
+  // </div>
+  // <div class="weather-forecast-temperature">
+  //     <span class="forecast-temperature-max"> 18° </span>
+  //     <span class="forecast-temperature-min"> 12°</span>
+  // </div>
+  // </div>`
+  // ;
+  forecastElement.innerHTML=forecastHtml + `</div>`;
+  forecastElement.innerHTML=forecastHtml;
+
+}
+
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "2ftf8d18ca43a10o8bf09c1a6bc39253";
+  let apiUrl = `https://api.openweathermap.org/data/3.0/onecall?lat=${coordinates.lat}&lon=${coordinates.lon}&appid=${apiKey}&units=metric`;
+  console.log(apiUrl);
+  // axios.get(apiUrl);
+  axios.get(apiUrl).then(displayForecast);
+}
 let celsiusTemperature = null;
 
 function displayTemperature(response) {
@@ -92,7 +135,7 @@ function displayTemperature(response) {
   let cityElement = document.querySelector("#city");
   let descriptionElement = document.querySelector("#description");
   let humidityElement = document.querySelector("#humidity");
-  let precipitationElement = document.querySelector("#precipitation");
+  // let precipitationElement = document.querySelector("#precipitation");
   let windElement = document.querySelector("#wind");
   let dateElement = document.querySelector("#date");
   let iconElement = document.querySelector("#icon");
@@ -115,6 +158,7 @@ function displayTemperature(response) {
   getForecast(response.data.coordinates);
 }
 search("Krakow");
+displayForecast();
 let form = document.querySelector("#form");
 form.addEventListener("submit", handleSubmit);
 
